@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
+import { API_URL } from '../../lib/api';
 
 export default function PostJob() {
   const navigate = useNavigate();
   const { showToast } = useToast();
   const { user } = useAuth();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [formData, setFormData] = useState({
     title: '',
     description: '',

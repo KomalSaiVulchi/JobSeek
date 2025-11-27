@@ -3,12 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Briefcase, FileText, CheckCircle, XCircle } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../lib/api';
 
 export default function Applicants() {
   const { jobId } = useParams();
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [job, setJob] = useState(null);
   const [applications, setApplications] = useState([]);
   const [selectedApplicationId, setSelectedApplicationId] = useState<string | null>(null);

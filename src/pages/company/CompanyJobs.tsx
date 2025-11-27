@@ -4,12 +4,12 @@ import { Briefcase, MapPin, Clock, Users } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../lib/api';
 
 export default function CompanyJobs() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [jobs, setJobs] = useState([]);
   const [applications, setApplications] = useState([]);
 
@@ -39,7 +39,7 @@ export default function CompanyJobs() {
     };
 
     fetchData();
-  }, [API_URL, showToast]);
+  }, [showToast]);
 
   const companyJobs = jobs.filter((job) => job.createdBy === user?.id || job.createdBy === user?._id);
 

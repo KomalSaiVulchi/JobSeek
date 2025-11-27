@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import { API_URL } from '../../lib/api';
 import { Mail, Phone, MapPin, Briefcase, GraduationCap, FileText } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
 
 export default function ApplicantProfile() {
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [profile, setProfile] = useState({
     name: '',
     title: '',

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { API_URL } from '../../lib/api';
 import { useNavigate } from 'react-router-dom';
 import { Briefcase, FileText, Clock, CheckCircle } from 'lucide-react';
 import Layout from '../../components/Layout';
@@ -7,7 +8,7 @@ import { useToast } from '../../context/ToastContext';
 export default function ApplicantDashboard() {
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [jobs, setJobs] = useState([]);
   const [applications, setApplications] = useState([]);
 

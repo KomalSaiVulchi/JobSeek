@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { Mail, MapPin, Building2, Users, Globe, FileText } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../lib/api';
 import { useAuth } from '../../context/AuthContext';
 
 export default function CompanyProfile() {
   const { user } = useAuth();
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [profile, setProfile] = useState({
     companyName: '',
     industry: '',

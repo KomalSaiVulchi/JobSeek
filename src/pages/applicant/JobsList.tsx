@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Search, MapPin, Briefcase, DollarSign, SlidersHorizontal } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../lib/api';
 
 export default function JobsList() {
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [jobs, setJobs] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [locationFilter, setLocationFilter] = useState('');

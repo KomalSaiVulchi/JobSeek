@@ -3,12 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { MapPin, Briefcase, DollarSign, Clock, Building2, ArrowLeft, X } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../lib/api';
 
 export default function JobDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [coverLetter, setCoverLetter] = useState('');
   const [job, setJob] = useState(null);

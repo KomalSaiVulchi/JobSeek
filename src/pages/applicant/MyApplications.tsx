@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { Clock, CheckCircle, XCircle, Eye, Trash2 } from 'lucide-react';
 import Layout from '../../components/Layout';
 import { useToast } from '../../context/ToastContext';
+import { API_URL } from '../../lib/api';
 
 export default function MyApplications() {
   const { showToast } = useToast();
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+  // const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
   const [applications, setApplications] = useState([]);
   const [filter, setFilter] = useState<'ongoing' | 'completed' | 'all'>('ongoing');
   const handleWithdraw = async (id: string) => {
