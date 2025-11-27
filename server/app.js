@@ -13,6 +13,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root ping (helps avoid "Cannot GET /")
+app.get('/', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
