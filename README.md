@@ -2,6 +2,27 @@
 
 JobSeek is a full-stack job portal where applicants can find and apply to jobs, and companies can post jobs, review applicants, and manage application statuses.
 
+---
+
+## Live Deployments
+
+- **Deployed Link** [JobSeek Web App](https://job-seek-olive.vercel.app)
+
+---
+
+## Demo Video
+
+- [Product Walkthrough](https://drive.google.com/file/d/1zl19wEN5z6kppNAmQ4t1xra2R8AV5Rl5/view?usp=drive_link) <!-- Replace with final recording URL -->
+
+---
+
+
+## Author
+
+- **Komal Sai Vulchi**  
+  GitHub: [@KomalSaiVulchi](https://github.com/KomalSaiVulchi)  
+  <!-- Add preferred contact details (email, LinkedIn) here -->
+
 This repo contains both the React frontend (Vite + Tailwind) and the Node/Express + MongoDB backend. You can deploy everything in a single Vercel project, or keep the frontend on Vercel and run the backend on Render (recommended for an always-on API).
 
 ---
