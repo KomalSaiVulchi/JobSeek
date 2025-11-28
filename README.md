@@ -2,7 +2,7 @@
 
 JobSeek is a full-stack job portal where applicants can find and apply to jobs, and companies can post jobs, review applicants, and manage application statuses.
 
-This repo contains both the React frontend (Vite + Tailwind) and the Node/Express + MongoDB backend, deployed together on Vercel.
+This repo contains both the React frontend (Vite + Tailwind) and the Node/Express + MongoDB backend. You can deploy everything in a single Vercel project, or keep the frontend on Vercel and run the backend on Render (recommended for an always-on API).
 
 ---
 
@@ -71,14 +71,14 @@ On Vercel, set the following **Environment Variables** in the project settings:
 
 - `VITE_API_URL` = `/api`
 
-### Backend (`server/.env` on local, Vercel project env in production)
+### Backend (`server/.env` on local, Vercel/Render env in production)
 
 ```bash
 MONGODB_URI=your_mongodb_atlas_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-On Vercel, define **MONGODB_URI** and **JWT_SECRET** in the same project’s Environment Variables.
+On Vercel/Render, define **MONGODB_URI** and **JWT_SECRET** in the project’s Environment Variables panel.
 
 ---
 
@@ -118,45 +118,40 @@ Make sure your root `.env` has `VITE_API_URL=http://localhost:4000` so the front
 
 ---
 
-## Deployment on Vercel
+## Deployment Options
 
-This repo is structured so both frontend and backend deploy on Vercel in a single project.
+### Option A – Frontend on Vercel, Backend on Render (recommended)
 
-### Backend on Vercel (Serverless API)
+1. Push this repository to GitHub.
+2. **Render backend**
+  - Create a Web Service → connect this repo → select the `server` directory as the root.
+  - Build command: `npm install`
+  - Start command: `npm start`
+  - Environment variables:
+    - `MONGODB_URI`
+    - `JWT_SECRET`
+  - Render automatically injects `PORT`; the backend already reads `process.env.PORT`.
+  - Optional: use the provided `render.yaml` for one-click setup.
+3. Copy the Render service URL (e.g. `https://jobseek-backend.onrender.com`).
+4. **Vercel frontend**
+  - New Project → import repo.
+  - Root directory: project root.
+  - Build command: `npm run build`
+  - Output directory: `dist`
+  - Environment variables:
+    - `VITE_API_URL` = `https://jobseek-backend.onrender.com`
+5. Deploy. Verify:
+  - Frontend: `https://your-frontend.vercel.app`
+  - Backend health: `https://jobseek-backend.onrender.com/health`
+
+### Option B – Everything on a single Vercel project
 
 - `server/app.js` defines the Express app and connects to MongoDB.
 - `api/server.js` exports that app so Vercel can run it as a serverless function.
-- The backend is automatically exposed under the `/api` path on your Vercel domain.
-
-Example routes in production:
-
-- `GET https://your-app.vercel.app/api/health`
-- `POST https://your-app.vercel.app/api/auth/login`
-- `GET https://your-app.vercel.app/api/jobs`
-
-### Frontend on Vercel
-
-- Vercel builds the React app using Vite:
-  - **Build command:** `npm run build`
-  - **Output directory:** `dist`
-- The SPA is served from the root of `https://your-app.vercel.app`.
-- The frontend uses `VITE_API_URL=/api` so all API calls go to the same Vercel project’s backend.
-
-### Steps to Deploy
-
-1. Push this repository to GitHub.
-2. In Vercel, click **New Project** and import the GitHub repo.
-3. Framework preset: **Vite**.
-4. Set **Build & Output**:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-5. Add environment variables in Vercel:
-   - `MONGODB_URI` – your Atlas URI
-   - `JWT_SECRET` – secret for signing JWTs
-   - `VITE_API_URL` – `/api`
-6. Deploy. Once complete, test:
-   - `https://your-app.vercel.app` – frontend UI
-   - `https://your-app.vercel.app/api/health` – backend health check
+- Set frontend env `VITE_API_URL=/api` so API calls hit the co-located backend.
+- After deploying, test:
+  - `https://your-app.vercel.app` – frontend UI
+  - `https://your-app.vercel.app/api/health` – backend health check
 
 ---
 
