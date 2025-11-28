@@ -8,7 +8,6 @@ RUN npm ci --only=production
 # copy source
 COPY . .
 
-RUN npm run build
-
+# no build step needed for plain JS server
 EXPOSE 4000
-CMD ["node", "dist/index.js"]
+CMD ["node", "index.js"]
